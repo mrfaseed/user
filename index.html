@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Example site </title>
+</head>
+<style>
+    html,body{
+        margin: 0;
+        height: 100%;
+        width: 100%;
+        
+        padding: 0;  
+        display: flex;
+        text-transform: uppercase;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; 
+        user-select: none;
+        -webkit-user-select: none;   
+        background-color: rgba(0, 0, 0, 0.986);     
+    }
+    h1{
+        font-size: 4rem;
+        color: green;
+    }
+@media only screen and (max-width:500px) {
+    body{
+        max-width: max-content;
+        background-color: green;
+    }
+    h1{
+        max-width: max-content;
+        font-size: 2rem;
+        color: white;
+    }
+}
+</style>
+<body>
+    <h1>
+    hello user 
+    </h1>
+</body>
+<script>
+function isMobileDevice() {
+    return /Mobi|Android/i.test(navigator.userAgent);
+}
+var viewMode = getCookie("view-mode");
+var viewport = document.querySelector('meta[name="viewport"]');
+if (viewMode === "desktop" && isMobileDevice()) {
+    alert("You can't turn on desktop mode on a mobile device.");
+    viewport.setAttribute('content', 'width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no');
+    document.cookie = "view-mode=mobile; path=/";
+} else if (viewMode === "desktop") {
+    viewport.setAttribute('content', 'width=1024');
+} else {
+    viewport.setAttribute('content', 'width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no');
+}
+</script>
+</html>
